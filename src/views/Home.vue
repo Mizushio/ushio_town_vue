@@ -7,7 +7,7 @@
     </div> -->
 
     <h1>这是个人中心，欢迎回来{{this.$store.getters.getusername}}</h1>   
-
+  
     <!-- <el-row>
     <el-col :span="12">
       <div class="grid-content bg-purple">

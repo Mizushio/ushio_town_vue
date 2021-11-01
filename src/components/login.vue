@@ -10,8 +10,14 @@
 
     </el-menu-item>
      
-  <el-menu-item index="2" @click="Logout()">
+  <el-menu-item index="2" v-if="username!=''" @click="Logout()">
   <el-button type="text">注销</el-button>
+  </el-menu-item>
+
+  <el-menu-item index="3" v-if="username==''" @click="Register()" >
+    
+    <el-button type="text">注册</el-button>
+    
   </el-menu-item>
 
 
@@ -43,7 +49,7 @@
 
 <script lang="js">
 import { defineComponent, reactive, toRefs } from 'vue'
-
+import { ElNotification } from 'element-plus'
 export default defineComponent({
   data(){
         return{
@@ -93,7 +99,16 @@ export default defineComponent({
         this.SendLogin();
         this.$store.commit('setusername', this.inputusername);    
         this.username=this.$store.getters.getusername;
+        ElNotification({
+        title: '登录成功',
+        message: '欢迎回来:'+this.inputusername,
+        type: 'success',
+        duration:'2000',
+      })
     },
+    Register:function () {
+     this.$router.push({path:"/register"})
+    }
 
   },
   //监听函数
